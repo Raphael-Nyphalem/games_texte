@@ -1,7 +1,9 @@
 import math
 import os
 import sys
+import json
 
+PLAYER= {}
 
 #Classes et aller voir https://www.dol-celeb.com/autres/classes/
 #pour plus d'idee
@@ -12,8 +14,12 @@ Druide     = {"Classes":"Druide"    ,"attaque":[],"armes":[],"armure":[]}
 Enchanteur = {"Classes":"Enchanteur","attaque":[],"armes":[],"armure":[]}
 Fantasin   = {"Classes":"Fantasin"  ,"attaque":[],"armes":[],"armure":[]}
 
+def start():
 
-PLAYER= {}
+    PLAYER = OPEN_FILE("save/save_player.txt")
+    return(PLAYER)
+
+
 def ADD_PLAYER(PLAYER):
     #Ajouter un player
     nb = len(PLAYER)
@@ -31,10 +37,20 @@ def ADD_PLAYER(PLAYER):
     #chois de la classe
     Player["classe"]= input('" A": Assassin \n "B": Barde \n "C": Chevalier \n "D":Druide \n "E": Enchanteur \n choisissais votre classe: ')
     Playeurnb = "Player_" + str(nb)
+    print Playeurnb
     PLAYER[Playeurnb]= Player
     print PLAYER[Playeurnb]
     return(PLAYER)
 
+def OPEN_FILE(filename):
+    with open(filename,"r") as file:
+        file_open = json.load(file)
+    return(file_open)
+
+def SAVE_FILE(save,filename):
+    with open(filename, 'w') as file:
+        json.dump(save, file)
+    return()
 
 def XP(player,gain):
     #Ajout xp a un player
@@ -47,17 +63,17 @@ def XP(player,gain):
         playeur["lv"] =lv + 1
     return(playeur)
 
-def XP_GAIN():
-    xp = 50
-    return xp
 
-def Save():
-    print("il n'y a pas de sauvegarde paussible pour le moment")
-    def Save_player():
+def Save(PLAYER):
+    def Save_player(PLAYER):
+        a=PLAYER
+        SAVE_FILE(a,"save/save_player.txt")
         return()
     def Save_game():
         return()
-    return
+    Save_player(PLAYER)
+
+    return()
 
 """
 ----------------------------------------------------------
@@ -77,7 +93,7 @@ def menu(PLAYER):
     if choise_menu == 'C':
         PLAYER= ADD_PLAYER(PLAYER)
     elif choise_menu == "S":
-        Save()
+        Save(PLAYER)
     elif choise_menu == "E":
         sys.exit()
 
@@ -93,6 +109,8 @@ def menu(PLAYER):
 _____________________________________________________________
 MAIN
 """
+PLAYER = start()
+print PLAYER
 i=1
 while i==1:
     menu(PLAYER)

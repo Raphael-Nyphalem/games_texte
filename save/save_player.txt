@@ -1,0 +1,1 @@
+{"Player_0": {"name": "Nyphalem", "classe": {"attaque": [], "armes": [], "armure": [], "Classes": "Druide"}, "element": null, "lv": 1, "player": 0, "inventory": null, "xp": 0}, "Player_1": {"name": "Darkwolfy", "classe": {"armes": [], "attaque": [], "Classes": "Chevalier", "armure": []}, "element": null, "lv": 1, "player": 1, "inventory": null, "xp": 0}}
