@@ -1,0 +1,6 @@
+{
+"Classes":"Assassin",
+"attaque":[],
+"armes":[],
+"armure":[]
+}
