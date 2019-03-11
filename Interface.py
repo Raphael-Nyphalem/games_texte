@@ -1,3 +1,5 @@
+#Obsolet a changer par une vrai interface en if elif
+
 import os
 import sys
 import Player
@@ -46,3 +48,6 @@ def menu(PLAYER):
         PLAYER=menu(PLAYER)
     clear()
     return(PLAYER)
+
+def Creation_playeur():
+    return()

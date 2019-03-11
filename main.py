@@ -2,15 +2,22 @@ import math
 import os
 import sys
 import json
+import time
+import select
+import tty
+import termios
+
 
 import Game_Play
 import Player
 import File
 import Interface
+import Show
 
 
 PLAYER= {}
-
+dt = 0.02
+show ="Menu"
 #Classes et aller voir https://www.dol-celeb.com/autres/classes/
 #pour plus d'idee
 
@@ -18,38 +25,36 @@ PLAYER= {}
 def start():
 
     PLAYER = File.OPEN_FILE("save/save_player.txt")
+    tty.setcbreak(sys.stdin.fileno())
     return(PLAYER)
 
 
+def isData():
+	#recuperation evenement clavier
+	return select.select([sys.stdin], [], [], 0) == ([sys.stdin], [], [])
 
 
+def loop_time():
+    global PLAYER, dt, show
+    c=0
+    t=time.time()
+    while (time.time() - t)<= dt:#zone calcul tmp reel
+        #recuperation clavier
+        if isData():
+		          c= sys.stdin.read(1)
+        #action utilisant l'input clavier
+        if c != 0:
+        c=0
+    return()
 
 
 """
 _____________________________________________________________
 MAIN
 """
+
 PLAYER = start()
-i=1
-while i==1:
-    Interface.clear()
-    Interface.menu(PLAYER)
-
-'''
-_____________________________________________________________
-TEST
-'''
-
-"""
-a=0
-PLAYER= ADD_PLAYER(PLAYER)
-
-print(PLAYEUR[a]["lv"],PLAYEUR[a]["xp"])
-PLAYEUR[a] = XP(PLAYEUR[a],XP_GAIN())
-print(PLAYEUR[a]["lv"],PLAYEUR[a]["xp"])
-
-
-nb=len(PLAYER)
-print nb
-print PLAYER
-"""
+Show.Choise(show, PLAYER)
+while True:
+    loop_time()
+    Show.Choise(show, PLAYER)
