@@ -26,6 +26,7 @@ def start():
 
     PLAYER = File.OPEN_FILE("save/save_player.txt")
     tty.setcbreak(sys.stdin.fileno())
+    Show.Background()
     return(PLAYER)
 
 
@@ -41,9 +42,10 @@ def loop_time():
     while (time.time() - t)<= dt:#zone calcul tmp reel
         #recuperation clavier
         if isData():
-		          c= sys.stdin.read(1)
+            c= sys.stdin.read(1)
         #action utilisant l'input clavier
         if c != 0:
+            print "c!=0"
         c=0
     return()
 
