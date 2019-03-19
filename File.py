@@ -2,7 +2,7 @@ import json
 import sys
 import os
 
-
+#json
 def OPEN_FILE(filename):
     with open(filename,"r") as file:
         file_open = json.load(file)
@@ -12,6 +12,26 @@ def SAVE_FILE(save,filename):
     with open(filename, 'w') as file:
         json.dump(save, file)
     return()
+
+#XML
+def SAVE_FILE_XML(save,filename):
+    myFile=open(filename,"w")
+    myFile.write(save)
+    myFile.close()
+    return()
+
+def OPEN_FILE_XML(filename):
+    myFile=open(filename,"r")
+    txt=myFile.read()
+    myFile.close()
+    return(txt)
+
+def SPLIT(doc,spliter):
+    #permet de coupee un txt pour le transformer en liste
+    #doc = srt a split
+    #spliter type str est le mots/ simbole / phrase ou le txt doit etre coupe
+    doc_split=doc.split(spliter))
+    return(doc_split)
 
 def Save(PLAYER):
     def Save_player(PLAYER):
@@ -25,10 +45,11 @@ def Save(PLAYER):
     raw_input("save complit")
     return()
 
+
+#simplification
+#menu
 def OPEN_MENU(filename):
-    myfile = open("Ressources/Background/Menu/"+filename+".txt", "r")
-    chaine=myfile.read()
-    myfile.close()
+    chaine=OPEN_FILE_XML("Ressources/Background/Menu/"+filename+".txt")
     return(chaine)
 
 #Class

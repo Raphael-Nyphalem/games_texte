@@ -60,3 +60,4 @@ Show.Choise(show, PLAYER)
 while True:
     loop_time()
     Show.Choise(show, PLAYER)
+#bien le bonour
